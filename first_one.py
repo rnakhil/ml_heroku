@@ -25,11 +25,20 @@ st.write("This is the data of Educational wise Break up of jobseekers registered
     \nThe dataset can be accessed [here](https://kerala.data.gov.in/catalog/educational-wise-break-jobseekers-registered-employment-exchanges-kerala).")
 
 st.header("Insights into the data")
+
+# comparison plot
+st.subheader("Male Vs Female Job Seekers in Kerala, District wise")
+ax = df_job_seekers.plot(x="Districts", y=["Male", "Female"], figsize=(10,3), x_compat=False)
+ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
+st.pyplot()
+
+
 #bar plot
 st.subheader("Total Number of Job seekers in Kerala, District wise")
 ax = sns.barplot(x='Districts',y='total_jobseekers',orient="v", data=df_job_seekers)
 ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
 st.pyplot()
+
 
 #bar plot
 st.subheader("Total Number of Post Graduate Job Seekers in Kerala, District wise")
@@ -39,6 +48,12 @@ st.pyplot()
 
 st.subheader("Total Number of Graduate Job Seekers in Kerala, District wise")
 ax = sns.barplot(x='Districts',y='Graduate',orient="v", data=df_job_seekers)
+ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
+st.pyplot()
+
+# comparison plot
+st.subheader("Graduate Vs Post Graduate Job Seekers in Kerala, District wise")
+ax = df_job_seekers.plot(x="Districts", y=["Graduate", "Post Graduate"], figsize=(10,3), x_compat=False)
 ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
 st.pyplot()
 
@@ -60,4 +75,3 @@ st.subheader("Total Number of Illiterate Job Seekers in Kerala, District wise")
 ax = sns.barplot(x='Districts',y='Illiterates',orient="v", data=df_job_seekers)
 ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
 st.pyplot()
-
