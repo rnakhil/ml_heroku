@@ -22,7 +22,7 @@ df_job_seekers['total_jobseekers'] = df_job_seekers['Male'] + df_job_seekers['Fe
 st.header("The data set")
 #st.table(df_job_seekers)
 st.write("This is the data of Educational wise Break up of jobseekers registered with Employment Exchanges in Kerala as on 31/10/2019. \
-    \nThe dataset can be accessed at [link](https://kerala.data.gov.in/catalog/educational-wise-break-jobseekers-registered-employment-exchanges-kerala)")
+    \nThe dataset can be accessed [here](https://kerala.data.gov.in/catalog/educational-wise-break-jobseekers-registered-employment-exchanges-kerala).")
 
 st.header("Insights into the data")
 #bar plot
@@ -43,6 +43,7 @@ ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
 st.pyplot()
 
 #bar plot
+sns.set_theme(style="ticks")
 st.subheader("Total Number of  Matric Job Seekers in Kerala, District wise")
 ax = sns.barplot(x='Districts',y='Matric',orient="v", data=df_job_seekers)
 ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
