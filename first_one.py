@@ -4,54 +4,59 @@ import pandas as pd
 import streamlit as st
 import numpy as np
 import seaborn as sns 
+
 #Remove Warnings
-st.balloons()
 st.set_option('deprecation.showPyplotGlobalUse', False)
-st.title("Educational wise Break up of jobseekers registered with Employment Exchanges in Kerala as on 31/10/2019")
+st.title("The Job Seekers in Kerala")
 
 #import dataset
 df_job_seekers = pd.read_csv('Educational_Breakup.csv',skiprows = 2)
 df_job_seekers = df_job_seekers.dropna()
 df_job_seekers = df_job_seekers.drop(df_job_seekers.columns[[0]], axis = 1)
 df_job_seekers = df_job_seekers.rename(columns=lambda x: x.strip())
-#display the data-set
-df_job_seekers.head(14)
+
+df_job_seekers['total_jobseekers'] = df_job_seekers['Male'] + df_job_seekers['Female']
+
+
 #Display the table
-st.table(df_job_seekers)
-st.header("Visualisation Using Seaborn")
+st.header("The data set")
+#st.table(df_job_seekers)
+st.write("This is the data of Educational wise Break up of jobseekers registered with Employment Exchanges in Kerala as on 31/10/2019. \
+    \nThe dataset can be accessed at [link](https://kerala.data.gov.in/catalog/educational-wise-break-jobseekers-registered-employment-exchanges-kerala)")
+
+st.header("Insights into the data")
 #bar plot
-st.subheader("Bar Plot")
-df_job_seekers.plot(kind='bar')
+st.subheader("Total Number of Job seekers in Kerala, District wise")
+ax = sns.barplot(x='Districts',y='total_jobseekers',orient="v", data=df_job_seekers)
+ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
 st.pyplot()
-# ax = sns.barplot(x='Districts',y='Male',orient="v", data=df_job_seekers)
 
-# ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
+#bar plot
+st.subheader("Total Number of Post Graduate Job Seekers in Kerala, District wise")
+ax = sns.barplot(x='Districts',y='Post Graduate',orient="v", data=df_job_seekers)
+ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
+st.pyplot()
 
-# #Displot
-# st.subheader("Displot")
-# st.pyplot()
+st.subheader("Total Number of Graduate Job Seekers in Kerala, District wise")
+ax = sns.barplot(x='Districts',y='Graduate',orient="v", data=df_job_seekers)
+ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
+st.pyplot()
 
-# tips = sns.load_dataset("tips")
+#bar plot
+st.subheader("Total Number of  Matric Job Seekers in Kerala, District wise")
+ax = sns.barplot(x='Districts',y='Matric',orient="v", data=df_job_seekers)
+ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
+st.pyplot()
 
-# sns.displot(data=tips, x="total_bill", hue="tip")
+#bar plot
+st.subheader("Total Number of Below Matric Job Seekers in Kerala, District wise")
+ax = sns.barplot(x='Districts',y='Below Matric',orient="v", data=df_job_seekers)
+ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
+st.pyplot()
 
+#bar plot
+st.subheader("Total Number of Illiterate Job Seekers in Kerala, District wise")
+ax = sns.barplot(x='Districts',y='Illiterates',orient="v", data=df_job_seekers)
+ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
+st.pyplot()
 
-# sns.displot(data=df_job_seekers, x="Matric", hue="Districts")
-
-
-# #joinplot
-# st.subheader("JointPlot")
-# sns.jointplot(x='total_bill',y='tip',data=tips,kind='scatter')
-# st.pyplot()
-# #pairplot
-# st.subheader("Pairplot")
-# sns.pairplot(tips,hue='sex',palette='rainbow')
-# st.pyplot()
-# #Rugplot
-# st.subheader("Rugplot")
-# sns.rugplot(tips['tip'])
-# st.pyplot()
-# #Correation
-# st.subheader("Heatmap")
-# sns.heatmap(tips.corr(),cmap='coolwarm',annot=True)
-# st.pyplot()
